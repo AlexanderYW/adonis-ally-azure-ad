@@ -9,7 +9,7 @@
     "build/src",
     "build/providers"
   ],
-  "types": "build/adonis-typings/index.d.ts",
+  "types": "build/providers/index.d.ts",
   "scripts": {
     "clean": "del build",
     "pretest": "npm run lint",
