@@ -1,0 +1,1 @@
+# adonis-ally-azure-ad
