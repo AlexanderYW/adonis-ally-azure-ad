@@ -11,7 +11,7 @@
   ],
   "types": "build/providers/index.d.ts",
   "scripts": {
-    "clean": "del build",
+    "clean": "del-cli build",
     "pretest": "npm run lint",
     "test": "node japaFile.js",
     "compile": "npm run lint && npm run clean && tsc && copyfiles instructions.md build",
