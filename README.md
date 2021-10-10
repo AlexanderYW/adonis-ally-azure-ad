@@ -42,17 +42,17 @@
 <div align="center">
   <sub>Built with ❤︎ by <a href="https://twitter.com/AlexanderYW">Alexander Wennerstrøm</a>
 </div>
-
-[gh-workflow-image]: https://img.shields.io/github/workflow/status/alexanderyw/adonis-ally-azure-ad/test?style=for-the-badge
-[gh-workflow-url]: https://github.com/alexanderyw/adonis-ally-azure-ad/actions/workflows/test.yml "Github action"
+  
+[gh-workflow-image]: https://img.shields.io/github/workflow/status/alexanderyw/adonis-ally-azure-ad/Node.js%20CI/main?style=for-the-badge
+[gh-workflow-url]: https://github.com/alexanderyw/adonis-ally-azure-ad/.github/workflows/test.yml "Github action"
 
 [typescript-image]: https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript
 [typescript-url]:  "typescript"
 
-[npm-image]: https://img.shields.io/npm/v/@alexanderyw/adonis-ally-azure-ad.svg?style=for-the-badge&logo=npm
-[npm-url]: https://npmjs.org/package/@alexanderyw/adonis-ally-azure-ad "npm"
+[npm-image]: https://img.shields.io/npm/v/adonis-ally-azure-ad.svg?style=for-the-badge&logo=npm
+[npm-url]: https://npmjs.org/package/adonis-ally-azure-ad "npm"
 
-[license-image]: https://img.shields.io/npm/l/@alexanderyw/adonis-ally-azure-ad?color=blueviolet&style=for-the-badge
+[license-image]: https://img.shields.io/npm/l/adonis-ally-azure-ad?color=blueviolet&style=for-the-badge
 [license-url]: LICENSE.md "license"
 
 [synk-image]: https://img.shields.io/snyk/vulnerabilities/github/alexanderyw/adonis-ally-azure-ad?label=Synk%20Vulnerabilities&style=for-the-badge
