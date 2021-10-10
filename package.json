@@ -66,12 +66,7 @@
     "instructionsMd": "./build/instructions.md",
     "env": {
       "AAD_CLIENT_ID": "",
-      "AAD_AUTHORITY": "https://login.microsoftonline.com/common",
-      "AAD_CLIENT_SECRET": "",
-      "AAD_CLIENT_KNOWN_AUTHORITIES": [
-        "login.microsoftonline.com"
-      ],
-      "AAD_CLIENT_PROTOCOL_MODE": "OIDC"
+      "AAD_CLIENT_SECRET": ""
     },
     "types": "adonis-ally-azure-ad",
     "providers": [
@@ -86,12 +81,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adonisjs/drive-gcs.git"
+    "url": "git+https://github.com/AlexanderYW/adonis-ally-azure-ad.git"
   },
   "bugs": {
-    "url": "https://github.com/adonisjs/drive-gcs/issues"
+    "url": "https://github.com/AlexanderYW/adonis-ally-azure-ad/issues"
   },
-  "homepage": "https://github.com/adonisjs/drive-gcs#readme",
+  "homepage": "https://github.com/AlexanderYW/adonis-ally-azure-ad#readme",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
