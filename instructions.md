@@ -26,9 +26,9 @@ const allyConfig: AllyConfig = {
   */
   AzureAD: {
     driver: 'AzureAD',
-    authorizeUrl: Env.get('AAD_AUTHORIZE_ENDPOINT'),
-    userInfoUrl: Env.get('AAD_USER_ENDPOINT'),
-    accessTokenUrl: Env.get('AAD_TOKEN_ENDPOINT'),
+    authorizeUrl: Env.get('AAD_AUTHORIZE_ENDPOINT'), // Optional
+    userInfoUrl: Env.get('AAD_USER_ENDPOINT'), // Optional
+    accessTokenUrl: Env.get('AAD_TOKEN_ENDPOINT'), // Optional
     clientId: Env.get('AAD_CLIENT_ID'),
     clientSecret: Env.get('AAD_CLIENT_SECRET'),
     callbackUrl: `http://localhost:${process.env.PORT}/azuread/callback`,
