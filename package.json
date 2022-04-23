@@ -35,10 +35,10 @@
   "devDependencies": {
     "@adonisjs/ally": "^4.1.1",
     "@adonisjs/core": "^5.3.1",
-    "@adonisjs/mrm-preset": "^4.1.2",
+    "@adonisjs/mrm-preset": "^5.0.3",
     "@adonisjs/require-ts": "^2.0.7",
     "@adonisjs/sink": "^5.1.6",
-    "@types/node": "^16.7.5",
+    "@types/node": "^17.0.25",
     "copyfiles": "^2.4.1",
     "del-cli": "^4.0.1",
     "eslint": "^8.1.0",
@@ -75,9 +75,6 @@
     "providers": [
       "adonis-ally-azure-ad"
     ]
-  },
-  "dependencies": {
-    "@poppinss/utils": "^3.2.0"
   },
   "directories": {
     "test": "test"
