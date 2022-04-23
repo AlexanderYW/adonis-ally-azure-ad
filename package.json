@@ -1,6 +1,6 @@
 {
   "name": "adonis-ally-azure-ad",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Azure AD ally driver for AdonisJS ally",
   "main": "build/providers/index.js",
   "files": [
