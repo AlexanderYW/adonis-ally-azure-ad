@@ -10,79 +10,17 @@
 |
 */
 
-import type {
-  AllyUserContract,
-  ApiRequestContract,
-  LiteralStringUnion,
-} from '@ioc:Adonis/Addons/Ally'
+import type { AllyUserContract, ApiRequestContract } from '@ioc:Adonis/Addons/Ally'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import type {
+  AADAccessToken,
+  AADConfig,
+  AADScopes,
+  UserFields,
+  UserFieldsAndToken,
+  UserInfo,
+} from '../types'
 import { Oauth2Driver, ApiRequest, RedirectRequest } from '@adonisjs/ally/build/standalone'
-
-/**
- * Define the access token object properties in this type. It
- * must have "token" and "type" and you are free to add
- * more properties.
- *
- * ------------------------------------------------
- * Change "AAD" to something more relevant
- * ------------------------------------------------
- */
-export type AADAccessToken = {
-  token: string
-  type: string
-  token_type: string
-  scope: string
-  expires_in: number
-  ext_expires_in: number
-  access_token: string
-  refresh_token: string
-  id_token: string
-}
-
-/**
- * Define a union of scopes your driver accepts. Here's an example of same
- * https://github.com/adonisjs/ally/blob/develop/adonis-typings/ally.ts#L236-L268
- *
- * ------------------------------------------------
- * Change "AAD" to something more relevant
- * ------------------------------------------------
- */
-export type AADScopes = string
-
-/**
- * Define the configuration options accepted by your driver. It must have the following
- * properties and you are free add more.
- *
- * ------------------------------------------------
- * Change "AAD" to something more relevant
- * ------------------------------------------------
- */
-export type AADConfig = {
-  driver: 'AzureAD'
-  clientId: string
-  clientSecret: string
-  callbackUrl: string
-  authorizeUrl?: string
-  accessTokenUrl?: string
-  userInfoUrl?: string
-  scopes?: LiteralStringUnion<AADScopes>[]
-}
-
-export type UserInfo = {
-  '@odata.context': string
-  '@odata.id': string
-  'businessPhones': string[]
-  'displayName': string
-  'givenName': string
-  'jobTitle': string
-  'mail': string
-  'mobilePhone': string
-  'officeLocation': string
-  'preferredLanguage'?: any
-  'surname': string
-  'userPrincipalName': string
-  'id': string
-}
 
 /**
  * Driver implementation. It is mostly configuration driven except the user calls
@@ -170,12 +108,15 @@ export class AAD extends Oauth2Driver<AADAccessToken, AADScopes> {
      * DO NOT REMOVE THE FOLLOWING LINE
      */
     this.loadState()
+
+    // Perform stateless authentication. Only applicable for Oauth2 client
+    this.stateless()
   }
 
   /**
    * Configuring the redirect request with defaults
    */
-  protected configureRedirectRequest(request: RedirectRequest<AADScopes>) {
+  protected configureRedirectRequest(request: RedirectRequest<AADScopes>): void {
     /**
      * Define user defined scopes or the default one's
      */
@@ -190,14 +131,14 @@ export class AAD extends Oauth2Driver<AADAccessToken, AADScopes> {
    * Update the implementation to tell if the error received during redirect
    * means "ACCESS DENIED".
    */
-  public accessDenied() {
+  public accessDenied(): boolean {
     return this.ctx.request.input('error') === 'invalid_grant'
   }
 
   /**
    * Returns the HTTP request with the authorization header set
    */
-  protected getAuthenticatedRequest(url: string, token: string) {
+  protected getAuthenticatedRequest(url: string, token: string): ApiRequest {
     const request = this.httpClient(url)
     request.header('Authorization', `Bearer ${token}`)
     request.header('Accept', 'application/json')
@@ -208,7 +149,10 @@ export class AAD extends Oauth2Driver<AADAccessToken, AADScopes> {
   /**
    * Fetches the user info from the Google API
    */
-  protected async getUserInfo(token: string, callback?: (request: ApiRequestContract) => void) {
+  protected async getUserInfo(
+    token: string,
+    callback?: (request: ApiRequestContract) => void
+  ): Promise<UserFields> {
     // User Info
     const userRequest = this.getAuthenticatedRequest(
       this.config.userInfoUrl || this.userInfoUrl,
@@ -263,7 +207,7 @@ export class AAD extends Oauth2Driver<AADAccessToken, AADScopes> {
      * Allow end user to configure the request. This should be called after your custom
      * configuration, so that the user can override them (if required)
      */
-    const user = await this.getUserInfo(accessToken.token, callback)
+    const user: UserFields = await this.getUserInfo(accessToken.token, callback)
 
     /**
      * Write your implementation details here
@@ -277,8 +221,8 @@ export class AAD extends Oauth2Driver<AADAccessToken, AADScopes> {
   /**
    * Finds the user by the access token
    */
-  public async userFromToken(token: string) {
-    const user = await this.getUserInfo(token)
+  public async userFromToken(token: string): Promise<UserFieldsAndToken> {
+    const user: UserFields = await this.getUserInfo(token)
 
     return {
       ...user,

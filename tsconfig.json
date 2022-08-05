@@ -3,5 +3,10 @@
   "compilerOptions": {
     "types": ["@types/node", "@adonisjs/core"],
     "skipLibCheck": true
-  }
+  },
+  "include": [
+    "**.ts",
+    "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue",
+    "providers/**/*.ts", "providers/**/*.d.ts", "providers/**/*.tsx", "providers/**/*.vue"
+  ],
 }
