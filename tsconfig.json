@@ -6,7 +6,7 @@
   },
   "include": [
     "**.ts",
-    "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue",
-    "providers/**/*.ts", "providers/**/*.d.ts", "providers/**/*.tsx", "providers/**/*.vue"
+    "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx",
+    "providers/**/*.ts", "providers/**/*.d.ts", "providers/**/*.tsx"
   ],
 }
