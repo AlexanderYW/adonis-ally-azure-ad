@@ -10,17 +10,72 @@
 |
 */
 
-import type { AllyUserContract, ApiRequestContract } from '@ioc:Adonis/Addons/Ally'
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { ApiRequest, Oauth2Driver, RedirectRequest } from '@adonisjs/ally/build/standalone'
 import type {
-  AADAccessToken,
-  AADConfig,
-  AADScopes,
-  UserFields,
-  UserFieldsAndToken,
-  UserInfo,
-} from '../types'
-import { Oauth2Driver, ApiRequest, RedirectRequest } from '@adonisjs/ally/build/standalone'
+  AllyUserContract,
+  ApiRequestContract,
+  LiteralStringUnion,
+} from '@ioc:Adonis/Addons/Ally'
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+
+export type AzureADAccessToken = {
+  token: string
+  type: string
+  token_type: string
+  scope: string
+  expires_in: number
+  ext_expires_in: number
+  access_token: string
+  refresh_token: string
+  id_token: string
+}
+
+export type AZureADScopes = string
+
+export type AZureADConfig = {
+  driver: 'azuread'
+  clientId: string
+  clientSecret: string
+  callbackUrl: string
+  authorizeUrl?: string
+  accessTokenUrl?: string
+  userInfoUrl?: string
+  scopes?: LiteralStringUnion<AZureADScopes>[]
+}
+
+export type UserInfo = {
+  '@odata.context': string
+  '@odata.id': string
+  'businessPhones': string[]
+  'displayName': string
+  'givenName': string
+  'jobTitle': string
+  'mail': string
+  'mobilePhone': string
+  'officeLocation': string
+  'preferredLanguage'?: any
+  'surname': string
+  'userPrincipalName': string
+  'id': string
+}
+
+export type UserFields = {
+  id: string
+  avatarUrl: string | null
+  nickName: string
+  displayName?: string | undefined
+  name: string
+  email: string | null
+  emailVerificationState: 'verified' | 'unverified' | 'unsupported'
+  original: UserInfo | null
+}
+
+export interface UserFieldsAndToken extends UserFields {
+  token: {
+    token: string
+    type: 'bearer'
+  }
+}
 
 /**
  * Driver implementation. It is mostly configuration driven except the user calls
@@ -29,7 +84,7 @@ import { Oauth2Driver, ApiRequest, RedirectRequest } from '@adonisjs/ally/build/
  * Change "AAD" to something more relevant
  * ------------------------------------------------
  */
-export class AAD extends Oauth2Driver<AADAccessToken, AADScopes> {
+export class AZureADDriver extends Oauth2Driver<AzureADAccessToken, AZureADScopes> {
   /**
    * The URL for the authority data
    *
@@ -96,7 +151,7 @@ export class AAD extends Oauth2Driver<AADAccessToken, AADScopes> {
    */
   protected scopesSeparator = ' '
 
-  constructor(ctx: HttpContextContract, public config: AADConfig) {
+  constructor(ctx: HttpContextContract, public config: AZureADConfig) {
     super(ctx, config)
 
     config.scopes = config.scopes || ['openid', 'profile', 'email', 'offline_access']
@@ -116,7 +171,7 @@ export class AAD extends Oauth2Driver<AADAccessToken, AADScopes> {
   /**
    * Configuring the redirect request with defaults
    */
-  protected configureRedirectRequest(request: RedirectRequest<AADScopes>): void {
+  protected configureRedirectRequest(request: RedirectRequest<AZureADScopes>): void {
     /**
      * Define user defined scopes or the default one's
      */
@@ -200,7 +255,7 @@ export class AAD extends Oauth2Driver<AADAccessToken, AADScopes> {
    */
   public async user(
     callback?: (request: ApiRequest) => void
-  ): Promise<AllyUserContract<AADAccessToken>> {
+  ): Promise<AllyUserContract<AzureADAccessToken>> {
     const accessToken = await this.accessToken()
 
     /**
@@ -226,7 +281,7 @@ export class AAD extends Oauth2Driver<AADAccessToken, AADScopes> {
 
     return {
       ...user,
-      token: { token, type: 'bearer' as const },
+      token: { token, type: 'bearer' },
     }
   }
 }
