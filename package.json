@@ -1,15 +1,15 @@
 {
   "name": "adonis-ally-azure-ad",
   "version": "0.3.0",
-  "description": "Azure AD ally driver for AdonisJS ally",
+  "description": "Azure AD ally driver for AdonisJS Ally",
   "main": "build/providers/index.js",
   "files": [
-    "build/adonis-typings",
-    "build/instructions.md",
     "build/src",
-    "build/providers"
+    "build/providers",
+    "build/standalone.js",
+    "build/standalone.d.ts",
+    "build/instructions.md"
   ],
-  "types": "build/providers/index.d.ts",
   "scripts": {
     "clean": "del-cli build",
     "pretest": "npm run lint",
@@ -60,6 +60,7 @@
     "anyBranch": false
   },
   "peerDependencies": {
+    "@adonisjs/ally": "^4.0.0",
     "@adonisjs/core": "^5.0.0"
   },
   "adonisjs": {
