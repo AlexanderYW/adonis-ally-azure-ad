@@ -9,7 +9,7 @@
     "build/src",
     "build/providers"
   ],
-  "types": "build/providers/index.d.ts",
+  "types": "build/standalone.d.ts",
   "scripts": {
     "clean": "del-cli build",
     "pretest": "npm run lint",

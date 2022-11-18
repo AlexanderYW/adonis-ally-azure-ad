@@ -1,1 +1,1 @@
-export * from './src/AzureAD'
+export * from './src/AzureADDriver'

@@ -6,7 +6,11 @@
   },
   "include": [
     "**.ts",
-    "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx",
-    "providers/**/*.ts", "providers/**/*.d.ts", "providers/**/*.tsx"
-  ],
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "providers/**/*.ts",
+    "providers/**/*.d.ts",
+    "providers/**/*.tsx"
+  ]
 }

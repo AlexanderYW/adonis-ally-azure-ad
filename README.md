@@ -47,13 +47,10 @@
 [gh-workflow-url]: https://github.com/alexanderyw/adonis-ally-azure-ad/.github/workflows/test.yml "Github action"
 
 [typescript-image]: https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript
-[typescript-url]:  "typescript"
-
+[typescript-url]: "typescript"
 [npm-image]: https://img.shields.io/npm/v/adonis-ally-azure-ad.svg?style=for-the-badge&logo=npm
-[npm-url]: https://npmjs.org/package/adonis-ally-azure-ad "npm"
-
+[npm-url]: https://npmjs.org/package/adonis-ally-azure-ad 'npm'
 [license-image]: https://img.shields.io/npm/l/adonis-ally-azure-ad?color=blueviolet&style=for-the-badge
-[license-url]: LICENSE.md "license"
-
+[license-url]: LICENSE.md 'license'
 [synk-image]: https://img.shields.io/snyk/vulnerabilities/github/alexanderyw/adonis-ally-azure-ad?label=Synk%20Vulnerabilities&style=for-the-badge
-[synk-url]: https://snyk.io/test/github/alexanderyw/adonis-ally-azure-ad?targetFile=package.json "synk"
+[synk-url]: https://snyk.io/test/github/alexanderyw/adonis-ally-azure-ad?targetFile=package.json 'synk'

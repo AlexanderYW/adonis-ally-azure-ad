@@ -5,14 +5,14 @@ The package has been configured successfully!
 Make sure to first define the mapping inside the `contracts/ally.ts` file as follows.
 
 ```ts
-import { AAD, AADConfig } from 'adonis-ally-azure-ad/build/standalone'
+import { AzureADDriver, AADConfig } from 'adonis-ally-azure-ad/build/standalone'
 
 declare module '@ioc:Adonis/Addons/Ally' {
   interface SocialProviders {
     // ... other mappings
     AzureAD: {
       config: AADConfig
-      implementation: AAD
+      implementation: AzureADDriver
     }
   }
 }

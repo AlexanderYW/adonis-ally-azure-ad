@@ -5,10 +5,10 @@ export default class AADProvider {
 
   public async boot() {
     const Ally = this.app.container.resolveBinding('Adonis/Addons/Ally')
-    const { AAD } = await import('../src/AzureAD')
+    const { AzureADDriver } = await import('../src/AzureADDriver')
 
     Ally.extend('AzureAD', (_, __, config, ctx) => {
-      return new AAD(ctx, config)
+      return new AzureADDriver(ctx, config)
     })
   }
 }
