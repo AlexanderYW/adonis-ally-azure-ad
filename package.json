@@ -5,6 +5,8 @@
   "main": "build/providers/index.js",
   "files": [
     "build/adonis-typings",
+    "build/standalone.js",
+    "build/standalone.d.ts",
     "build/instructions.md",
     "build/src",
     "build/providers"
@@ -14,7 +16,7 @@
     "clean": "del-cli build",
     "pretest": "npm run lint",
     "test": "node japaFile.js",
-    "compile": "npm run lint && npm run clean && tsc && copyfiles instructions.md build",
+    "compile": "npm run lint && npm run clean && tsc && copyfiles instructions.md build && copyfiles src/types.d.ts build",
     "build": "npm run compile",
     "prepublishOnly": "npm run build",
     "lint": "eslint . --ext=.ts",
